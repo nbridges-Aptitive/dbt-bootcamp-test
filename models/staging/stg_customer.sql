@@ -1,12 +1,13 @@
 select
 
-    customernumber,
-    customername,
-    concat(contactfirstname, ' ', contactlastname) as contactname,
+    customernumber as customer_number,
+    customername as customer_name,
+    concat(contactfirstname, ' ', contactlastname) as contact_name,
     city,
     state,
     country,
-    salesrepemployeenumber,
-    creditlimit
+    {{ region_generator() }},
+    salesrepemployeenumber as sales_rep_employee_number,
+    creditlimit as credit_limit
 
     from {{ source('public','customer')}}

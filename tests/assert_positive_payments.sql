@@ -1,4 +1,4 @@
 select
-  priceeach
+  price_each
 from {{ ref('stg_orderdetail')}}
-where priceeach >= 0
+where not(price_each >= 0)

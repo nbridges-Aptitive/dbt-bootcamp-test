@@ -1,0 +1,87 @@
+version: 2
+
+models:
+ - name: stg_orderheader
+   description: Staged order data from the bootcamp dataset, focused on clerical information.
+   columns: 
+    - name: order_number
+      description: Primary Key for orders
+      tests:
+       - unique
+       - not_null
+
+    - name: order_date
+      description: Date the order was placed
+      tests:
+       - not_null
+
+    - name: required_date
+      description: Date the order must arrive by
+
+    - name: shipped_date
+      description: Date that the order was shipped
+
+    - name: status
+      description: Status of the order
+
+    - name: customer_number
+      description: Foreign Key for customer
+      tests:
+       - not_null
+
+ - name: stg_orderdetail
+   description: Staged order data from the bootcamp dataset, focused on individual component purchases.
+   columns: 
+    - name: order_number
+      description: Foriegn key for orderheader
+      tests:
+       - not_null
+
+    - name: product_code
+      description: Foriegn key for Products
+      tests:
+       - not_null
+
+    - name: quantity_ordered
+      description: Number of the product ordered for this order
+
+    - name: price_each
+      description: Price each unit of the product was sold at for this order
+
+    - name: order_line_number
+      description: Place in an order of which products were included in the order
+      tests:
+       - not_null
+
+ - name: monthly_revenue_company
+   description: Monthly Company Revenue, showing monthly and yearly running totals for the year of 2004.
+   columns:
+    - name: month
+      description: Month number where the revenue is coming from
+      tests:
+       - not_null
+
+    - name: Revenue (Running Total)
+      description: Revenue the company has produced since the beggining of the year.
+
+    - name: Monthly Revenue
+      description: Revenue the company produced for that month.
+
+ - name: monthly_revenue_cust
+   description: Monthly Revenue, showing monthly and yearly running totals for the year of 2004. Broken down by customer.
+   columns: 
+    - name: customer
+      description: Name of the Customer
+      tests:
+       - not_null
+
+    - name: month
+      description: Month number where the revenue is coming from
+      tests:
+       - not_null
+
+    - name: Revenue (Running Total)
+      description: Revenue the customer has produced since the beggining of the year.
+
+    - name: Monthly Revenue
+      description: Revenue the customer produced for that month.
