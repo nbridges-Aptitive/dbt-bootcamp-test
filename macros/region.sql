@@ -1,4 +1,4 @@
-{% macro region_generator() %}
+{% macro region_generator(country_column) %}
 
 {% set europe_north = ('Norway', 'Finland', 'UK', 'Ireland', 'Sweden', 'Denmark') %}
 {% set europe_south = ('Portugal', 'Italy', 'Spain') %}
@@ -10,15 +10,15 @@
 {% set america_north = ('USA', 'Canada') %}
 
 case
-when country in {{ europe_north }} then 'Northern Europe'
-when country in {{ europe_south }} then 'Southern Europe'
-when country in {{ europe_east }} then 'Eastern Europe'
-when country in {{ europe_west }} then 'Western Europe'
-when country in {{ asia }} then 'Asia'
-when country in {{ pacific }} then 'South Pacific'
-when country in {{ africa }} then 'Africa'
-when country in {{ america_north }} then 'North America'
+when {{ country_column }} in {{ europe_north }} then 'Northern Europe'
+when {{ country_column }} in {{ europe_south }} then 'Southern Europe'
+when {{ country_column }} in {{ europe_east }} then 'Eastern Europe'
+when {{ country_column }} in {{ europe_west }} then 'Western Europe'
+when {{ country_column }} in {{ asia }} then 'Asia'
+when {{ country_column }} in {{ pacific }} then 'South Pacific'
+when {{ country_column }} in {{ africa }} then 'Africa'
+when {{ country_column }} in {{ america_north }} then 'North America'
 else 'N/A'
-end as region
+end
 
 {%- endmacro %}

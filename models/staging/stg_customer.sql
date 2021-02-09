@@ -6,7 +6,7 @@ select
     city,
     state,
     country,
-    {{ region_generator() }},
+    {{ region_generator('country') }} as region,
     salesrepemployeenumber as sales_rep_employee_number,
     creditlimit as credit_limit
 
