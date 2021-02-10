@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+ - name: public
+   description: A clone of the Aptitive Bootcamp database for use in dbt.
+   database: dbt_bootcamp_test
+   tables:
+    - name: orderheader
+      description: Basic clerical data for orders.
+      columns:
+       - name: ordernumber
+         description: Primary key for orderheader.
+         tests:
+          - unique
+          - not_null
+    - name: orderdetail
+      columns:
+       - name: ordernumber
+         tests:
+          - unique
+          - not_null
+    - name: customer
+      columns:
+       - name: customernumber
+         tests:
+          - unique
+          - not_null
